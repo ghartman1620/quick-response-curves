@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>math.js | plot</title>
+  <script src="https://unpkg.com/mathjs@5.2.3/dist/math.min.js"></script>
+
+  <script src="https://cdn.plot.ly/plotly-1.35.2.min.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <style>   
+    input[type=text] {
+      width: 300px;
+    }
+    input {
+      padding: 6px;
+    }
+    body, html, input {
+      font-family: sans-serif;
+      font-size: 11pt;
+
+    }
+    form {
+      margin: 20px 0;
+    }
+    .title {
+      font-size: 24pt;      
+    }
+  </style>
+</head>
+<body>
+<p class="title">
+    Response Curve Graphing
+</p>
+<p>
+    Here you can see response curve graphs for mapping normalized (0-1) inputs to
+    their marginal utility score (0-1) outputs. All curves have slope arguments,
+    some have intercept arguments. Can use the min, max, and input fields to
+    find the utility value for a particular game state value given min and max bookends
+    for that value. <br>
+    
+    
+    For example, if we wanted to check out how a response curve might evaluate a 
+    health consideration (like an action to heal):<br>
+    
+    min: 0 (minimum hp is 0)<br>
+    max: 100 (max hp is 100)<br>
+    curve: quadratic, slope 1, y intercept 0, x intercept 1
+    Then, if we have low hp, like 5, we'll have a high score (.9025) for this action.<br>
+    But if we have high hp, like 90, we'll have a low score (.009) for this action. <br>
+</p>
+<form id="form">
+  <label for="eq">Enter an equation:</label> <br>
+    <input type="radio" name="curve-type" value="linear" checked> Linear <br>
+    <input type="radio" name="curve-type" value="quadratic"> Quadratic <br>
+    <input type="radio" name="curve-type" value="logit"> Logit <br>
+    <input type="radio" name="curve-type" value="logistic"> Logistic <br>
+    <input type="range" id="slope" min=-5 max=5 value=1 step=.01> Slope <span id="slope-val"></span><br>
+    <input type="range" id="y-intercept" min=-1 max=1 value=0 step=.01> y-intercept (linear, quadratic only)<span id="intercept-val"></span> <br>
+    <input type="range" id="x-intercept" min=-1 max=1 value=0 step=.01> x-intercept (quadratic only)<span id="x-intercept-val"></span> <br>
+    
+    
+    
+           
+    <input type="number" id="minValue" step=.001 value=0> Minimum Input Value <br>
+    <input type="number" id="maxValue" step=.001 value=1> Maximum Input Value <br>
+    <input type="number" id="evaluate-x" step=.001 value=.5> Input to Evalulate <br>
+                                                    
+    
+  <input type="submit" value="Draw" />
+</form>
+
+<div id="plot"></div>
+
+<p>
+  Value of point <span id="eval-point"></span> is <span id="eval-result"></span>
+</p>
+    
+<p>
+  Used plot library: <a href="https://plot.ly/javascript/">Plotly</a>
+</p>
+<p>
+  Reference: <a href="http://mathjs.org/examples/browser/plot.html">Example</a> 
+</p>
+
+<script src="index.js"></script>
+<script src="formchange.js"></script>
+</body>
+</html>
