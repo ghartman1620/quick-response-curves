@@ -32,7 +32,7 @@ function draw() {
 
     switch(curveType){
         case "linear":
-            var expression = `${m} * (x) + ${b}`
+            var expression = `${m} * (x-${c}) + ${b}`
             break;
         case "quadratic":
             var expression = `${b} + ${m} * (x-${c})^2`
