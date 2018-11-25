@@ -86,4 +86,4 @@ document.getElementById('form').onsubmit = function (event) {
     draw()
 }
 
-// draw()
+draw()
